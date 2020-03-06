@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <style>
+        table {
+            width: 100%;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .canhoto {
+            position: relative;
+            border: 3px solid #000000;
+        }
+
+        .canhoto p {
+            position: absolute;
+            transform: rotate(270deg);
+            top: 126px;
+            left: -111px;
+            font-size: 20px;
+        }
+
+        .principal {
+            text-align: center;
+            border: 3px solid #000000;
+            height: 302.2px
+        }
+
+        .pizzaract {
+            font-weight: bold;
+            font-size: 50px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        .numero {
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        .logo {
+            width: 70%;
+        }
+        .garrafa {
+            width: 20%;
+        }
+        .pizza {
+            width: 20%;
+        }
+        @media print {
+            .convite {
+                page-break-before: always;
+            }
+            .data {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="form-group">
+              <input type="text" class="form-control" id="quantity" aria-describedby="helpId" placeholder="Quantos Convites?">
+            </div>
+        </div>
+        <div class="row convites">
+            <div class="col-6 convite">
+                <div class="row">
+                    <div class="col-2 canhoto">
+                        <p>
+                            Nome:___________________________ <br>
+                            Telefone:__________________Nº:<span class="label"></span>
+                        </p>
+                        <br class="clear">
+                    </div>
+                    <div class="col-10 principal">
+                        <p class="pizzaract">6º Pizzaract</p>
+                        <p class="centro">
+                            <img src="rotaract.png" class="logo">
+                            <img src="garrafa.png" class="garrafa">
+                            <p class="numero">
+                                <img src="pizza.png" class="pizza" align="middle">
+                                Nº:<span class="label"></span>
+                            </p>
+                        </p>
+                        <p class="rodape">
+                            Vale uma pizza e um refrigerante <br>
+                            <b>R$25,00 - 21/03</b> das <b>15:00</b> às <b>18:00</b> <br>
+                            Retirar na sede do Rotary Club
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var convites = document.querySelector('.convites');
+        var convite = document.querySelector('.convite');
+        var conviteClone = convite.cloneNode(true);
+        convite.remove();
+        var quantity = document.querySelector('#quantity');
+        quantity.onchange = () => {
+            for (let number = 1; number <= quantity.value; number++) {
+                let label = number.toString().padStart(3,'0');
+                conviteClone.querySelectorAll('.label').forEach(span => {
+                    span.innerHTML = label;
+                });
+                convites.appendChild(conviteClone.cloneNode(true));
+            }
+        }
+    </script>
+</body>
+
+</html>
